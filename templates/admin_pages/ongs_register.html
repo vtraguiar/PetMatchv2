@@ -1,174 +1,68 @@
 {% extends "layouts/layout.html" %}
+{% from "macros/campo.html" import campo, cabecalho %}
 
 {% block titleEcss %}
-    <title>Cadastro de ONG</title>
+    <title>Cadastro de ONG — PetMatch</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ongs_register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formularios.css') }}">
 {% endblock titleEcss %}
 
 {% block conteudo %}
     <div class="page-content">
         <div class="form-v10-content">
-            <form class="form-detail" action="{{ url_for('ongs_register') }}" method="post"
-                enctype="multipart/form-data">
-                <!-- Campo de segurança CSRF -->
+            <form class="form-detail" action="{{ url_for('ongs_register') }}" method="post" enctype="multipart/form-data" novalidate>
                 {{ form.hidden_tag() }}
 
                 <div class="form-left">
-                    <h2>Informações Gerais</h2>
-                    <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.nome_Ong.label }}
-                            {{ form.nome_Ong(class="input-text") }}
-                            {% if form.nome_Ong.errors %}
-                                <div class="error">{{ form.nome_Ong.errors[0] }}</div>
-                            {% endif %}
-                        </div>
+                    <h1 class="titulo-form">Cadastro de ONG</h1>
+                    {{ cabecalho(form) }}
 
-                        <div class="form-row form-row-2">
-                            {{ form.cnpj.label }}
-                            {{ form.cnpj(class="input-text") }}
-                            {% if form.cnpj.errors %}
-                                <div class="error">{{ form.cnpj.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <h2>Foto de perfil/logo</h2>
-                    <div class="form-group">
-                        <div class="form-row form-row-3">
-                            {{ form.fotoPerfilLogo(class="input-file") }}
-                            {% if form.fotoPerfilLogo.errors %}
-                                <div class="error">{{ form.fotoPerfilLogo.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="form-row">
-                            {{ form.descricao_foto_perfil_Logo.label }}<br>
-                            {{ form.descricao_foto_perfil_Logo(class="input-text-description") }}
-                            {% if form.descricao_foto_perfil_Logo.errors %}
-                                <div class="error">{{ form.descricao_foto_perfil_Logo.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                        <h2>Foto do QRcode</h2>
+                    <fieldset>
+                        <legend>Dados da ONG</legend>
                         <div class="form-group">
-                            <div class="form-row form-row-3">
-                                {{ form.fotoQrCode(class="input-file") }}
-                                {% if form.fotoQrCode.errors %}
-                                    <div class="error">{{ form.fotoQrCode.errors[0] }}</div>
-                                {% endif %}
-                            </div>
+                            <div class="form-row-1">{{ campo(form.nome_Ong) }}</div>
+                            <div class="form-row-2">{{ campo(form.cnpj) }}</div>
                         </div>
+                        {{ campo(form.fotoPerfilLogo, 'input-file') }}
+                        {{ campo(form.descricao_foto_perfil_Logo, 'input-text-description') }}
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Endereço</legend>
                         <div class="form-group">
-                            <div class="form-row">
-                                {{ form.descricao_fotoqrCode.label }}<br>
-                                {{ form.descricao_fotoqrCode(class="input-text-description") }}
-                                {% if form.descricao_fotoqrCode.errors %}
-                                    <div class="error">{{ form.descricao_fotoqrCode.errors[0] }}</div>
-                                {% endif %}
-                            </div>
+                            <div class="form-row-1">{{ campo(form.cep) }}</div>
+                            <div class="form-row-2">{{ campo(form.numero) }}</div>
                         </div>
+                        {{ campo(form.rua) }}
+                        {{ campo(form.complemento) }}
+                    </fieldset>
 
-                    <h2>Informações de Contato</h2>
-                    <div class="form-row">
-                        {{ form.rua.label }}
-                        {{ form.rua(class="input-text") }}
-                        {% if form.rua.errors %}
-                            <div class="error">{{ form.rua.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-row">
-                        {{ form.complemento.label }}
-                        {{ form.complemento(class="input-text") }}
-                        {% if form.complemento.errors %}
-                            <div class="error">{{ form.complemento.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.cep.label }}
-                            {{ form.cep(class="input-text") }}
-                            {% if form.cep.errors %}
-                                <div class="error">{{ form.cep.errors[0] }}</div>
-                            {% endif %}
+                    <fieldset>
+                        <legend>Contato</legend>
+                        <div class="form-group">
+                            <div class="form-row-1">{{ campo(form.ddd) }}</div>
+                            <div class="form-row-2">{{ campo(form.celular) }}</div>
                         </div>
+                        {{ campo(form.instagram) }}
+                    </fieldset>
 
-                        <div class="form-row form-row-2">
-                            {{ form.numero.label }}
-                            {{ form.numero(class="input-text") }}
-                            {% if form.numero.errors %}
-                                <div class="error">{{ form.numero.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
+                    <fieldset>
+                        <legend>Doações</legend>
+                        {{ campo(form.dados_bancarios, 'input-text-description') }}
+                        {{ campo(form.fotoQrCode, 'input-file') }}
+                        {{ campo(form.descricao_fotoqrCode, 'input-text-description') }}
+                    </fieldset>
 
-                    <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.ddd.label }}
-                            {{ form.ddd(class="input-text") }}
-                            {% if form.ddd.errors %}
-                                <div class="error">{{ form.ddd.errors[0] }}</div>
-                            {% endif %}
-                        </div>
+                    <fieldset>
+                        <legend>Dados de acesso da ONG</legend>
+                        {{ campo(form.email) }}
+                        {{ campo(form.senha) }}
+                        {{ campo(form.senhaConfirmar) }}
+                    </fieldset>
 
-                        <div class="form-row form-row-2">
-                            {{ form.celular.label }}
-                            {{ form.celular(class="input-text") }}
-                            {% if form.celular.errors %}
-                                <div class="error">{{ form.celular.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <h2>Informações Bancárias</h2>
-                    <div class="form-row">
-                        {{ form.dados_bancarios.label }}
-                        {{ form.dados_bancarios(class="input-text") }}
-                        {% if form.dados_bancarios.errors %}
-                            <div class="error">{{ form.dados_bancarios.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-row">
-                        {{ form.instagram.label }}
-                        {{ form.instagram(class="input-text") }}
-                        {% if form.instagram.errors %}
-                            <div class="error">{{ form.instagram.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <h2>Segurança</h2>
-                    <div class="form-row">
-                        {{ form.email.label }}
-                        {{ form.email(class="input-text") }}
-                        {% if form.email.errors %}
-                            <div class="error">{{ form.email.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-row">
-                        {{ form.senha.label }}
-                        {{ form.senha(class="input-text") }}
-                        {% if form.senha.errors %}
-                            <div class="error">{{ form.senha.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-row">
-                        {{ form.senhaConfirmar.label }}
-                        {{ form.senhaConfirmar(class="input-text") }}
-                        {% if form.senhaConfirmar.errors %}
-                            <div class="error">{{ form.senhaConfirmar.errors[0] }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-row-last">
-                        {{ form.cadastrarBotao(class="register") }}
+                    <div class="acoes-form">
+                        <a class="botao-secundario" href="{{ url_for('admin_dashboard') }}">Cancelar</a>
+                        {{ form.cadastrarBotao(class="register botao-primario") }}
                     </div>
                 </div>
             </form>

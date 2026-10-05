@@ -1,0 +1,1458 @@
+[
+ {
+  "passo": "Usuário: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Google Chrome frame.",
+   "Barra de endereço e de pesquisa autocomplete 127.0.0.1:5000/cadastro.",
+   "Carregamento de Cadastro de usuário — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "Usuário: primeiro campo",
+  "foco": "primeiroNome:text",
+  "fala": [
+   "Primeiro nome entry obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 1",
+  "foco": "sobrenome:text",
+  "fala": [
+   "Sobrenome entry obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 2",
+  "foco": "data_nascimento:date",
+  "fala": [
+   "Data de nascimento (obrigatório) Dia Data de nascimento (obrigatório) 0 spin button.",
+   "É preciso ter 18 anos ou mais."
+  ]
+ },
+ {
+  "passo": "Usuário: próximo após data",
+  "foco": "foto_perfil:file",
+  "fala": [
+   "Foto de perfil (obrigatório) Foto de perfil (obrigatório): Nenhum arquivo escolhido push button.",
+   "Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 4",
+  "foco": "descricao_foto_perfil:textarea",
+  "fala": [
+   "Descrição da foto de perfil entry obrigatório.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 5",
+  "foco": "cep:text",
+  "fala": [
+   "CEP entry 58400000 obrigatório.",
+   "8 dígitos, sem traço. Ex.: 58400000."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 6",
+  "foco": "numero:text",
+  "fala": [
+   "Número entry 123 obrigatório.",
+   "Somente dígitos."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 7",
+  "foco": "rua:text",
+  "fala": [
+   "Rua entry obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 8",
+  "foco": "complemento:text",
+  "fala": [
+   "Complemento entry.",
+   "Opcional. Ex.: apto 101, bloco B."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 9",
+  "foco": "ddd:tel",
+  "fala": [
+   "DDD entry 83 obrigatório.",
+   "2 dígitos. Ex.: 83."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 10",
+  "foco": "celular:tel",
+  "fala": [
+   "Celular entry 999998888 obrigatório.",
+   "9 dígitos, sem traço. Ex.: 999998888."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 11",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry nome@dominio.com obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 12",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 13",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar senha (obrigatório) password text.",
+   "Repita a senha digitada acima."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 14",
+  "foco": "declaracao:checkbox",
+  "fala": [
+   "Declaro que as informações fornecidas são verdadeiras check box não selecionada obrigatório.",
+   "entrada inválida."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 15",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab 16",
+  "foco": "cadastrarBotao:submit",
+  "fala": [
+   "Cadastrar push button."
+  ]
+ },
+ {
+  "passo": "Usuário: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "notification.",
+   "Corrija 14 campo(s) para continuar:• Primeiro nome: Campo obrigatório. • Sobrenome: Campo obrigatório. • Data de nascimento: Campo obrigatório. • Foto de perfil: Campo obrigatório. • Descrição da foto de perfil: Campo obrigatório. • CEP: O CEP deve ter 8 dígitos, sem traço. • Rua: Campo obrigatório. • Número: Campo obrigatório. • DDD: Campo obrigatório. • Celular: Campo obrigatório. • E-mail: Informe um e-mail válido, ex.: nome@dominio.com. • Senha: A senha deve ter no mínimo 6 caracteres. • Confirmar senha: As senhas não coincidem. • Declaro que as informações fornecidas são verdadeiras: É preciso confirmar a declaração para se cadastrar. Por segurança, as fotos e a senha não são mantidas: selecione as fotos e digite a senha novamente.",
+   "Carregamento de Cadastro de usuário — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 22 links não visitados."
+  ]
+ },
+ {
+  "passo": "Usuário: 1º link do resumo",
+  "foco": "primeiroNome:text",
+  "fala": [
+   "Primeiro nome entry obrigatório.",
+   "entrada inválida.",
+   "⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab após erro 1",
+  "foco": "sobrenome:text",
+  "fala": [
+   "Sobrenome entry obrigatório.",
+   "entrada inválida.",
+   "⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab após erro 2",
+  "foco": "data_nascimento:date",
+  "fala": [
+   "Data de nascimento (obrigatório) Dia Data de nascimento (obrigatório) 0 spin button.",
+   "É preciso ter 18 anos ou mais. ⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: Tab após erro 3",
+  "foco": "data_nascimento:date",
+  "fala": [
+   "Data de nascimento (obrigatório) Mês Data de nascimento (obrigatório) 0 spin button.",
+   "É preciso ter 18 anos ou mais. ⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Usuário: foco em data_nascimento após erro",
+  "foco": "data_nascimento:date",
+  "fala": []
+ },
+ {
+  "passo": "Usuário: foco em foto_perfil após erro",
+  "foco": "foto_perfil:file",
+  "fala": [
+   "Foto de perfil (obrigatório) ⚠ Campo obrigatório. Foto de perfil (obrigatório) ⚠ Campo obrigatório.: Nenhum arquivo escolhido push button."
+  ]
+ },
+ {
+  "passo": "Usuário: foco em senha após erro",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres. ⚠ A senha deve ter no mínimo 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Usuário: foco em declaracao após erro",
+  "foco": "declaracao:checkbox",
+  "fala": [
+   "Declaro que as informações fornecidas são verdadeiras check box não selecionada obrigatório.",
+   "entrada inválida.",
+   "⚠ É preciso confirmar a declaração para se cadastrar."
+  ]
+ },
+ {
+  "passo": "ONG: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Não foi possível encontrar a localização atual.",
+   "Cadastro de ONG — PetMatch document web.",
+   "Carregamento de Cadastro de ONG — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "ONG: primeiro campo",
+  "foco": "nome_Ong:text",
+  "fala": [
+   "Nome da ONG entry obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 1",
+  "foco": "cnpj:text",
+  "fala": [
+   "CNPJ entry 12345678000199 obrigatório.",
+   "14 dígitos, sem pontos ou barras. Ex.: 12345678000199."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 2",
+  "foco": "fotoPerfilLogo:file",
+  "fala": [
+   "Logo da ONG Logo da ONG: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 3",
+  "foco": "descricao_foto_perfil_Logo:textarea",
+  "fala": [
+   "Descrição da logo entry obrigatório.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 4",
+  "foco": "cep:text",
+  "fala": [
+   "CEP entry 58400000 obrigatório.",
+   "8 dígitos, sem traço. Ex.: 58400000."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 5",
+  "foco": "numero:text",
+  "fala": [
+   "Número entry 123 obrigatório.",
+   "Somente dígitos."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 6",
+  "foco": "rua:text",
+  "fala": [
+   "Rua entry obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 7",
+  "foco": "complemento:text",
+  "fala": [
+   "Complemento entry.",
+   "Opcional."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 8",
+  "foco": "ddd:tel",
+  "fala": [
+   "DDD entry 83 obrigatório.",
+   "2 dígitos. Ex.: 83."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 9",
+  "foco": "celular:tel",
+  "fala": [
+   "Celular entry 999998888 obrigatório.",
+   "9 dígitos, sem traço. Ex.: 999998888."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 10",
+  "foco": "instagram:text",
+  "fala": [
+   "Instagram entry @minhaong obrigatório.",
+   "Ex.: @minhaong."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 11",
+  "foco": "dados_bancarios:textarea",
+  "fala": [
+   "Dados bancários entry Banco 001 - Ag. 1234 - CC 56789-0 obrigatório.",
+   "Banco, agência e conta (máx. 100 caracteres)."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 12",
+  "foco": "fotoQrCode:file",
+  "fala": [
+   "QR code do PIX QR code do PIX: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 13",
+  "foco": "descricao_fotoqrCode:textarea",
+  "fala": [
+   "Descrição do QR code entry.",
+   "Opcional. Se ficar vazio, usaremos \"Essa imagem é o QR code do PIX da ONG <nome>\"."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 14",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry contato@minhaong.org obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 15",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 16",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar senha (obrigatório) password text.",
+   "Repita a senha digitada acima."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 17",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "ONG: Tab 18",
+  "foco": "cadastrarBotao:submit",
+  "fala": [
+   "Cadastrar ONG push button."
+  ]
+ },
+ {
+  "passo": "ONG: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "notification.",
+   "Corrija 13 campo(s) para continuar:• Nome da ONG: Campo obrigatório. • CNPJ: Campo obrigatório. • Descrição da logo: Campo obrigatório. • CEP: O CEP deve ter 8 dígitos, sem traço. • Rua: Campo obrigatório. • Número: Campo obrigatório. • DDD: Campo obrigatório. • Celular: Campo obrigatório. • Instagram: Campo obrigatório. • Dados bancários: Campo obrigatório. • E-mail: Informe um e-mail válido, ex.: nome@dominio.com. • Senha: A senha deve ter no mínimo 6 caracteres. • Confirmar senha: As senhas não coincidem. Por segurança, as fotos e a senha não são mantidas: selecione as fotos e digite a senha novamente.",
+   "Carregamento de Cadastro de ONG — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 21 links não visitados."
+  ]
+ },
+ {
+  "passo": "ONG: 1º link do resumo",
+  "foco": "nome_Ong:text",
+  "fala": [
+   "Nome da ONG entry obrigatório.",
+   "entrada inválida.",
+   "⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: Tab após erro 1",
+  "foco": "cnpj:text",
+  "fala": [
+   "CNPJ entry 12345678000199 obrigatório.",
+   "entrada inválida.",
+   "14 dígitos, sem pontos ou barras. Ex.: 12345678000199 ⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: Tab após erro 2",
+  "foco": "fotoPerfilLogo:file",
+  "fala": [
+   "Logo da ONG Logo da ONG: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "ONG: Tab após erro 3",
+  "foco": "descricao_foto_perfil_Logo:textarea",
+  "fala": [
+   "Descrição da logo entry obrigatório.",
+   "entrada inválida.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres). ⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "ONG: foco em senha após erro",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres. ⚠ A senha deve ter no mínimo 6 caracteres."
+  ]
+ },
+ {
+  "passo": "ONG: foco em fotoPerfilLogo após erro",
+  "foco": "fotoPerfilLogo:file",
+  "fala": [
+   "Logo da ONG Logo da ONG: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Animal: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Não foi possível encontrar a localização atual.",
+   "Cadastro de animal — PetMatch document web.",
+   "Carregamento de Cadastro de animal — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "Animal: primeiro campo",
+  "foco": "nome:text",
+  "fala": [
+   "Nome do animal entry obrigatório."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 1",
+  "foco": "especie:radio",
+  "fala": [
+   "Espécie (obrigatório) Gato.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: Tab 2",
+  "foco": "tamanho:radio",
+  "fala": [
+   "Porte (obrigatório) Pequeno.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: Tab 3",
+  "foco": "idade:number",
+  "fala": [
+   "Idade (em anos)  0 spin button obrigatório.",
+   "De 0 a 30. Use 0 para filhotes com menos de 1 ano."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 4",
+  "foco": "descricao:textarea",
+  "fala": [
+   "Descrição entry obrigatório.",
+   "Temperamento, saúde, vacinas... (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 5",
+  "foco": "status:radio",
+  "fala": [
+   "Status (obrigatório) Disponível.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: Tab 6",
+  "foco": "castrado:checkbox",
+  "fala": [
+   "Animal castrado check box não selecionada."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 7",
+  "foco": "foto1:file",
+  "fala": [
+   "Foto principal (obrigatório) Foto principal (obrigatório): Nenhum arquivo escolhido push button.",
+   "Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 8",
+  "foco": "descricao_foto1:textarea",
+  "fala": [
+   "Descrição da foto principal entry obrigatório.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 9",
+  "foco": "foto2:file",
+  "fala": [
+   "Foto 2 Foto 2: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 10",
+  "foco": "descricao_foto2:textarea",
+  "fala": [
+   "Descrição da foto 2 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 11",
+  "foco": "foto3:file",
+  "fala": [
+   "Foto 3 Foto 3: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 12",
+  "foco": "descricao_foto3:textarea",
+  "fala": [
+   "Descrição da foto 3 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 13",
+  "foco": "foto4:file",
+  "fala": [
+   "Foto 4 Foto 4: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 14",
+  "foco": "descricao_foto4:textarea",
+  "fala": [
+   "Descrição da foto 4 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 15",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "Animal: Tab 16",
+  "foco": "cadastrarBotao:submit",
+  "fala": [
+   "Cadastrar animal push button."
+  ]
+ },
+ {
+  "passo": "Animal: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "Idade (em anos)  40 spin button obrigatório.",
+   "entrada inválida.",
+   "De 0 a 30. Use 0 para filhotes com menos de 1 ano.",
+   "0",
+   "Descrição da foto principal: Campo obrigatório.",
+   "Por segurança, as fotos não são mantidas: selecione as fotos novamente.",
+   "notification.",
+   "Corrija 7 campo(s) para continuar:• Nome do animal: Campo obrigatório. • Espécie: Campo obrigatório. • Porte: Campo obrigatório. • Idade (em anos): Informe uma idade entre 0 e 30 anos. • Descrição: Campo obrigatório. • Foto principal: Campo obrigatório. • Descrição da foto principal: Campo obrigatório. Por segurança, as fotos não são mantidas: selecione as fotos novamente.",
+   "Porte: Campo obrigatório.",
+   "Carregamento de Cadastro de animal — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 15 links não visitados.",
+   "• Porte: Campo obrigatório.",
+   "Idade (em anos): Informe uma idade entre 0 e 30 anos.",
+   "Espécie: Campo obrigatório.",
+   "Corrija 7 campo(s) para continuar:• Nome do animal: Campo obrigatório. • Espécie: Campo obrigatório. • Porte: Campo obrigatório. • Idade (em anos): Informe uma idade entre 0 e 30 anos. • Descrição: Campo obrigatório. • Foto principal: Campo obrigatório. • Descrição da foto principal: Campo obrigatório. Por segurança, as fotos não são mantidas: selecione as fotos novamente.",
+   "• Nome do animal: Campo obrigatório.",
+   "Foto principal: Campo obrigatório.",
+   "• Idade (em anos): Informe uma idade entre 0 e 30 anos.",
+   "Descrição: Campo obrigatório.",
+   "Nome do animal: Campo obrigatório.",
+   "Corrija 7 campo(s) para continuar:",
+   "• Espécie: Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Animal: 1º link do resumo",
+  "foco": "nome:text",
+  "fala": [
+   "Nome do animal entry obrigatório.",
+   "entrada inválida.",
+   "⚠ Campo obrigatório."
+  ]
+ },
+ {
+  "passo": "Animal: Tab após erro 1",
+  "foco": "especie:radio",
+  "fala": [
+   "Espécie (obrigatório) Gato ⚠ Campo obrigatório.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: Tab após erro 2",
+  "foco": "tamanho:radio",
+  "fala": [
+   "Porte (obrigatório) Pequeno ⚠ Campo obrigatório.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: Tab após erro 3",
+  "foco": "idade:number",
+  "fala": [
+   "Idade (em anos)  40 spin button obrigatório.",
+   "entrada inválida.",
+   "De 0 a 30. Use 0 para filhotes com menos de 1 ano. ⚠ Informe uma idade entre 0 e 30 anos."
+  ]
+ },
+ {
+  "passo": "Animal: foco em especie-0 após erro",
+  "foco": "especie:radio",
+  "fala": [
+   "Espécie (obrigatório) Gato ⚠ Campo obrigatório.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: foco em tamanho-0 após erro",
+  "foco": "tamanho:radio",
+  "fala": [
+   "Porte (obrigatório) Pequeno ⚠ Campo obrigatório.",
+   "não selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: foco em status-0 após erro",
+  "foco": "status:radio",
+  "fala": [
+   "Status (obrigatório) Disponível.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Animal: foco em castrado após erro",
+  "foco": "castrado:checkbox",
+  "fala": [
+   "Animal castrado check box não selecionada."
+  ]
+ },
+ {
+  "passo": "Animal: foco em foto1 após erro",
+  "foco": "foto1:file",
+  "fala": [
+   "Foto principal (obrigatório) ⚠ Campo obrigatório. Foto principal (obrigatório) ⚠ Campo obrigatório.: Nenhum arquivo escolhido push button."
+  ]
+ },
+ {
+  "passo": "Editar animal: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Carregamento de Editar animal — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "Editar animal: primeiro campo",
+  "foco": "nome:text",
+  "fala": [
+   "Nome do animal entry Tico obrigatório."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 1",
+  "foco": "especie:radio",
+  "fala": [
+   "Espécie (obrigatório) Gato.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 2",
+  "foco": "tamanho:radio",
+  "fala": [
+   "Porte (obrigatório) Pequeno.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 3",
+  "foco": "idade:number",
+  "fala": [
+   "Idade (em anos)  0 spin button obrigatório.",
+   "De 0 a 30. Use 0 para filhotes com menos de 1 ano."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 4",
+  "foco": "descricao:textarea",
+  "fala": [
+   "Descrição entry Filhote dócil e brincalhão. obrigatório.",
+   "Temperamento, saúde, vacinas... (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 5",
+  "foco": "status:radio",
+  "fala": [
+   "Status (obrigatório) Disponível.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 6",
+  "foco": "castrado:checkbox",
+  "fala": [
+   "Animal castrado check box selecionada."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 7",
+  "foco": "foto1:file",
+  "fala": [
+   "Nova foto principal Nova foto principal: Nenhum arquivo escolhido push button.",
+   "Opcional: envie só se quiser trocar a foto atual. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 8",
+  "foco": "descricao_foto1:textarea",
+  "fala": [
+   "Descrição da foto principal entry Gato cinza deitado obrigatório.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 9",
+  "foco": "foto2:file",
+  "fala": [
+   "Foto 2 Foto 2: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 10",
+  "foco": "descricao_foto2:textarea",
+  "fala": [
+   "Descrição da foto 2 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 11",
+  "foco": "foto3:file",
+  "fala": [
+   "Foto 3 Foto 3: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 12",
+  "foco": "descricao_foto3:textarea",
+  "fala": [
+   "Descrição da foto 3 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 13",
+  "foco": "foto4:file",
+  "fala": [
+   "Foto 4 Foto 4: Nenhum arquivo escolhido push button.",
+   "Opcional. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 14",
+  "foco": "descricao_foto4:textarea",
+  "fala": [
+   "Descrição da foto 4 entry.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 15",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab 16",
+  "foco": "salvarBotao:submit",
+  "fala": [
+   "Salvar alterações push button."
+  ]
+ },
+ {
+  "passo": "Editar animal: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "Idade (em anos)  0 spin button obrigatório.",
+   "entrada inválida.",
+   "notification.",
+   "Corrija 1 campo(s) para continuar:• Idade (em anos): Informe uma idade entre 0 e 30 anos. Por segurança, as fotos não são mantidas: se ia trocá-las, selecione as fotos novamente.",
+   "Idade (em anos): Informe uma idade entre 0 e 30 anos.",
+   "Por segurança, as fotos não são mantidas: se ia trocá-las, selecione as fotos novamente.",
+   "Carregamento de Editar animal — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 9 links não visitados.",
+   "Corrija 1 campo(s) para continuar:• Idade (em anos): Informe uma idade entre 0 e 30 anos. Por segurança, as fotos não são mantidas: se ia trocá-las, selecione as fotos novamente.",
+   "• Idade (em anos): Informe uma idade entre 0 e 30 anos.",
+   "Corrija 1 campo(s) para continuar:"
+  ]
+ },
+ {
+  "passo": "Editar animal: 1º link do resumo",
+  "foco": "idade:number",
+  "fala": [
+   "Idade (em anos)  40 spin button obrigatório.",
+   "entrada inválida.",
+   "De 0 a 30. Use 0 para filhotes com menos de 1 ano. ⚠ Informe uma idade entre 0 e 30 anos."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab após erro 1",
+  "foco": "descricao:textarea",
+  "fala": [
+   "Descrição entry Filhote dócil e brincalhão. obrigatório.",
+   "Temperamento, saúde, vacinas... (máx. 300 caracteres)."
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab após erro 2",
+  "foco": "status:radio",
+  "fala": [
+   "Status (obrigatório) Disponível.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: Tab após erro 3",
+  "foco": "castrado:checkbox",
+  "fala": [
+   "Animal castrado check box selecionada."
+  ]
+ },
+ {
+  "passo": "Editar animal: foco em especie-0 após erro",
+  "foco": "especie:radio",
+  "fala": [
+   "Espécie (obrigatório) Gato.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: foco em status-0 após erro",
+  "foco": "status:radio",
+  "fala": [
+   "Status (obrigatório) Disponível.",
+   "selecionado radio button"
+  ]
+ },
+ {
+  "passo": "Editar animal: foco em castrado após erro",
+  "foco": "castrado:checkbox",
+  "fala": [
+   "Animal castrado check box selecionada."
+  ]
+ },
+ {
+  "passo": "Editar animal: foco em foto1 após erro",
+  "foco": "foto1:file",
+  "fala": [
+   "Nova foto principal Nova foto principal: Nenhum arquivo escolhido push button.",
+   "Opcional: envie só se quiser trocar a foto atual. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar perfil: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Não foi possível encontrar a localização atual.",
+   "Carregamento de Editar perfil — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 9 links não visitados."
+  ]
+ },
+ {
+  "passo": "Editar perfil: primeiro campo",
+  "foco": "A",
+  "fala": [
+   "Primeiro nome entry Ana obrigatório.",
+   "[falas lidas de outra janela removidas: o foco saiu do Chrome]"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 1",
+  "foco": "A",
+  "fala": [
+   "Editar perfil — PetMatch - Google Chrome frame.",
+   "navegação",
+   "Lista com 7 itens.",
+   "Chats link.",
+   "[falas lidas de outra janela removidas: o foco saiu do Chrome]"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 2",
+  "foco": "A",
+  "fala": [
+   "Editar perfil — PetMatch - Google Chrome frame.",
+   "navegação",
+   "Lista com 7 itens.",
+   "Pets para adoção link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 3",
+  "foco": "A",
+  "fala": [
+   "ONGs link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 4",
+  "foco": "A",
+  "fala": [
+   "Home link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 5",
+  "foco": "A",
+  "fala": [
+   "Sobre link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 6",
+  "foco": "A",
+  "fala": [
+   "Perfil link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 7",
+  "foco": "A",
+  "fala": [
+   "Sair link."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 8",
+  "foco": "primeiroNome:text",
+  "fala": [
+   "deixando a lista.",
+   "deixando a navegação.",
+   "form",
+   "Dados pessoais panel.",
+   "Primeiro nome entry Ana selecionado obrigatório.",
+   "Modo de foco"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 9",
+  "foco": "sobrenome:text",
+  "fala": [
+   "Sobrenome entry Silva selecionado obrigatório."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 10",
+  "foco": "data_nascimento:date",
+  "fala": [
+   "Data de nascimento (obrigatório) Dia Data de nascimento (obrigatório) 01 spin button.",
+   "É preciso ter 18 anos ou mais."
+  ]
+ },
+ {
+  "passo": "Editar perfil: próximo após data",
+  "foco": "foto_perfil:file",
+  "fala": [
+   "Nova foto de perfil Nova foto de perfil: Nenhum arquivo escolhido push button.",
+   "Opcional: envie só se quiser trocar a foto atual. Formatos aceitos: JPG ou PNG.",
+   "Modo de navegação"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 12",
+  "foco": "descricao_foto_perfil:textarea",
+  "fala": [
+   "Descrição da foto de perfil entry Ana sorrindo obrigatório.",
+   "Descreva a imagem para pessoas que usam leitor de tela (máx. 300 caracteres).",
+   "Modo de foco"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 13",
+  "foco": "cep:text",
+  "fala": [
+   "deixando o painel.",
+   "Endereço panel.",
+   "CEP entry 58400000 selecionado obrigatório.",
+   "8 dígitos, sem traço. Ex.: 58400000."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 14",
+  "foco": "numero:text",
+  "fala": [
+   "Número entry 25 selecionado obrigatório.",
+   "Somente dígitos."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 15",
+  "foco": "rua:text",
+  "fala": [
+   "Rua entry Rua das Flores selecionado obrigatório."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 16",
+  "foco": "complemento:text",
+  "fala": [
+   "Complemento entry Apto 101 selecionado.",
+   "Opcional. Ex.: apto 101, bloco B."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 17",
+  "foco": "ddd:tel",
+  "fala": [
+   "deixando o painel.",
+   "Contato panel.",
+   "DDD entry 83 selecionado obrigatório.",
+   "2 dígitos. Ex.: 83."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 18",
+  "foco": "celular:tel",
+  "fala": [
+   "Celular entry 999998888 selecionado obrigatório.",
+   "9 dígitos, sem traço. Ex.: 999998888."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 19",
+  "foco": "email:email",
+  "fala": [
+   "deixando o painel.",
+   "Dados de acesso panel.",
+   "E-mail entry ana@teste.com selecionado obrigatório."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 20",
+  "foco": "senha:password",
+  "fala": [
+   "Nova senha password text.",
+   "Opcional: deixe em branco para manter a senha atual. Mínimo de 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 21",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar nova senha password text.",
+   "Repita a nova senha, se for trocá-la."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 22",
+  "foco": "A",
+  "fala": [
+   "deixando o painel.",
+   "Cancelar link.",
+   "Modo de navegação"
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab 23",
+  "foco": "salvarBotao:submit",
+  "fala": [
+   "Salvar alterações push button."
+  ]
+ },
+ {
+  "passo": "Editar perfil: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "Seleção apagada.",
+   "form",
+   "notification.",
+   "Corrija 4 campo(s) para continuar:• CEP: O CEP deve ter 8 dígitos, sem traço. • E-mail: Informe um e-mail válido, ex.: nome@dominio.com. • Nova senha: A senha deve ter no mínimo 6 caracteres. • Confirmar nova senha: As senhas não coincidem. Por segurança, as fotos e a senha não são mantidas: se ia trocá-las, selecione as fotos e digite a senha novamente.",
+   "Carregamento de Editar perfil — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 13 links não visitados."
+  ]
+ },
+ {
+  "passo": "Editar perfil: 1º link do resumo",
+  "foco": "cep:text",
+  "fala": [
+   "CEP entry 123 obrigatório.",
+   "entrada inválida.",
+   "8 dígitos, sem traço. Ex.: 58400000 ⚠ O CEP deve ter 8 dígitos, sem traço."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab após erro 1",
+  "foco": "numero:text",
+  "fala": [
+   "Número entry 25 selecionado obrigatório.",
+   "Somente dígitos."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab após erro 2",
+  "foco": "rua:text",
+  "fala": [
+   "Rua entry Rua das Flores selecionado obrigatório."
+  ]
+ },
+ {
+  "passo": "Editar perfil: Tab após erro 3",
+  "foco": "complemento:text",
+  "fala": [
+   "Complemento entry Apto 101 selecionado.",
+   "Opcional. Ex.: apto 101, bloco B."
+  ]
+ },
+ {
+  "passo": "Editar perfil: foco em data_nascimento após erro",
+  "foco": "data_nascimento:date",
+  "fala": [
+   "Data de nascimento (obrigatório) Dia Data de nascimento (obrigatório) 01 spin button.",
+   "É preciso ter 18 anos ou mais."
+  ]
+ },
+ {
+  "passo": "Editar perfil: foco em foto_perfil após erro",
+  "foco": "foto_perfil:file",
+  "fala": [
+   "Nova foto de perfil Nova foto de perfil: Nenhum arquivo escolhido push button.",
+   "Opcional: envie só se quiser trocar a foto atual. Formatos aceitos: JPG ou PNG."
+  ]
+ },
+ {
+  "passo": "Editar perfil: foco em senha após erro",
+  "foco": "senha:password",
+  "fala": [
+   "Nova senha password text.",
+   "Opcional: deixe em branco para manter a senha atual. Mínimo de 6 caracteres. ⚠ A senha deve ter no mínimo 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Entrar: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Carregamento de Entrar — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 9 links não visitados."
+  ]
+ },
+ {
+  "passo": "Entrar: primeiro campo",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry nome@dominio.com obrigatório."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab 1",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab 2",
+  "foco": "A",
+  "fala": [
+   "Esqueceu a senha? link."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab 3",
+  "foco": "a-g0wxux2fqd7r",
+  "fala": [
+   "Não sou um robô check box não selecionada."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab 4",
+  "foco": "A",
+  "fala": [
+   "Criar conta link."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab 5",
+  "foco": "loginBotao:submit",
+  "fala": [
+   "Entrar push button."
+  ]
+ },
+ {
+  "passo": "Entrar: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "notification.",
+   "Corrija 1 campo(s) para continuar:• E-mail: Informe um e-mail válido, ex.: nome@dominio.com. Por segurança, a senha não é mantida: digite a senha novamente.",
+   "Carregando. Por favor aguarde.",
+   "Carregamento de Entrar — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 10 links não visitados."
+  ]
+ },
+ {
+  "passo": "Entrar: 1º link do resumo",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry abc obrigatório.",
+   "entrada inválida.",
+   "⚠ Informe um e-mail válido, ex.: nome@dominio.com."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab após erro 1",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab após erro 2",
+  "foco": "A",
+  "fala": [
+   "Esqueceu a senha? link."
+  ]
+ },
+ {
+  "passo": "Entrar: Tab após erro 3",
+  "foco": "a-ezw4dyb2y16b",
+  "fala": [
+   "Não sou um robô check box não selecionada."
+  ]
+ },
+ {
+  "passo": "Entrar: foco em email após erro",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry abc obrigatório.",
+   "entrada inválida.",
+   "⚠ Informe um e-mail válido, ex.: nome@dominio.com."
+  ]
+ },
+ {
+  "passo": "Entrar: foco em senha após erro",
+  "foco": "senha:password",
+  "fala": [
+   "Senha (obrigatório) password text."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Carregamento de Recuperar senha — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: primeiro campo",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry nome@dominio.com obrigatório.",
+   "Use o e-mail informado no seu cadastro."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: Tab 1",
+  "foco": "A",
+  "fala": [
+   "Voltar ao login link."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: Tab 2",
+  "foco": "sendBotao:submit",
+  "fala": [
+   "Enviar link push button."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "E-mail entry abc obrigatório.",
+   "entrada inválida.",
+   "notification.",
+   "Corrija 1 campo(s) para continuar:• E-mail: Informe um e-mail válido, ex.: nome@dominio.com.",
+   "Carregamento de Recuperar senha — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 9 links não visitados."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: 1º link do resumo",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry abc obrigatório.",
+   "entrada inválida.",
+   "Use o e-mail informado no seu cadastro. ⚠ Informe um e-mail válido, ex.: nome@dominio.com."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: Tab após erro 1",
+  "foco": "A",
+  "fala": [
+   "Voltar ao login link."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: Tab após erro 2",
+  "foco": "sendBotao:submit",
+  "fala": [
+   "Enviar link push button."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: Tab após erro 3",
+  "foco": "resumo-erros",
+  "fala": [
+   "Pesquisa em todas as guias push button.",
+   "notification.",
+   "Corrija 1 campo(s) para continuar:• E-mail: Informe um e-mail válido, ex.: nome@dominio.com."
+  ]
+ },
+ {
+  "passo": "Recuperar senha: foco em email após erro",
+  "foco": "email:email",
+  "fala": [
+   "E-mail entry abc obrigatório.",
+   "entrada inválida.",
+   "Use o e-mail informado no seu cadastro. ⚠ Informe um e-mail válido, ex.: nome@dominio.com."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: carregar página",
+  "foco": "BODY",
+  "fala": [
+   "Carregamento de Redefinir senha — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 8 links não visitados."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: primeiro campo",
+  "foco": "senha:password",
+  "fala": [
+   "Nova senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab 1",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar senha (obrigatório) password text.",
+   "Repita a senha digitada acima."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab 2",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab 3",
+  "foco": "redefinirBotao:submit",
+  "fala": [
+   "Redefinir senha push button."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: enviar inválido",
+  "foco": "resumo-erros",
+  "fala": [
+   "•••",
+   "notification.",
+   "Corrija 2 campo(s) para continuar:• Nova senha: A senha deve ter no mínimo 6 caracteres. • Confirmar senha: As senhas não coincidem. Por segurança, a senha não é mantida: digite a senha novamente.",
+   "Carregamento de Redefinir senha — PetMatch concluído.",
+   "Página tem 2 marcos, 1 título, 1 formulário, 10 links não visitados."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: 1º link do resumo",
+  "foco": "senha:password",
+  "fala": [
+   "Nova senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres. ⚠ A senha deve ter no mínimo 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab após erro 1",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar senha (obrigatório) password text.",
+   "Repita a senha digitada acima. ⚠ As senhas não coincidem."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab após erro 2",
+  "foco": "A",
+  "fala": [
+   "Cancelar link."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: Tab após erro 3",
+  "foco": "redefinirBotao:submit",
+  "fala": [
+   "Redefinir senha push button."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: foco em senha após erro",
+  "foco": "senha:password",
+  "fala": [
+   "Nova senha (obrigatório) password text.",
+   "Mínimo de 6 caracteres. ⚠ A senha deve ter no mínimo 6 caracteres."
+  ]
+ },
+ {
+  "passo": "Redefinir senha: foco em senhaConfirmar após erro",
+  "foco": "senhaConfirmar:password",
+  "fala": [
+   "Confirmar senha (obrigatório) password text.",
+   "Repita a senha digitada acima. ⚠ As senhas não coincidem."
+  ]
+ }
+]

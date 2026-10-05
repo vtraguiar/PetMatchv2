@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
-from itsdangerous import URLSafeTimedSerializer
+from itsdangerous import URLSafeTimedSerializer, BadSignature
 from flask_migrate import Migrate
 import base64
 from flask_socketio import SocketIO, join_room, leave_room, send
@@ -25,6 +25,12 @@ app.config['SECRET_KEY'] = 'JHBJDJMBDKJ677898'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://petuser:87Amore;;w34@localhost/PetMatch'
 # de madu
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Mylooksql2024@localhost/PetMatch'
+# URI vem do ambiente (ex.: mysql+pymysql://user:senha@localhost/PetMatch); sem ela usa SQLite local
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///local.db')
+# TESTING=1 desliga o reCAPTCHA do login em ambiente local
+app.config['TESTING'] = os.environ.get('TESTING') == '1'
+# deixa o WTForms usar as próprias traduções (FormPT em config/forms.py)
+app.config['WTF_I18N_ENABLED'] = False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -86,53 +92,17 @@ def test_db():
 def login():
     form = loginForm()
     if form.validate_on_submit():
-        # Verifica se o reCAPTCHA é válido
-        # Verificar a resposta do reCAPTCHA
-        recaptcha_response = request.form.get('g-recaptcha-response')
-        print(f"reCAPTCHA response: {recaptcha_response}")
-
-        print("Formulário validado!")
-        email = form.email.data
-        senha = form.senha.data
-
-        print("Email:", email)
-        print("Senha:", senha)
-
-        user = Usuario.query.filter_by(email=email).first()
-
-        if user:
-            print(user)
-            print(current_user)
-            print("Usuário encontrado:", user.primeiro_nome)
-            print("Senha:", user.senha)
-            print("Senha fornecida:", senha)
-
-            if user.check_password(senha):
-                login_user(user)
-                print("Login realizado com sucesso!")
-                flash('Login bem-sucedido!', 'success')
-                return redirect(url_for('profile'))
-            else:
-                print("Senha incorreta.")
-                flash('Senha incorreta. Tente novamente.', 'danger')
-
-        # verifica na tabela Admin
-        admin = Admin.query.filter_by(email=email).first()
-        if admin and admin.check_password(senha):
-            login_user(admin)
-            flash('Login bem-sucedido! Bem-vindo Admin.', 'success')
-            return redirect(url_for('admin_dashboard'))  # Redireciona para o dashboard do admin
-
-        # verifica na tabela Ong
-        ong = Ong.query.filter_by(email=email).first()
-        if ong and ong.check_password(senha):
-            login_user(ong)
-            flash('Login bem-sucedido! Bem-vindo Ong.', 'success')
-            return redirect(url_for('ong_dashboard'))  # Redireciona para a página da ONG
-
-        else:
-            print("Usuário não encontrado.")
-            flash('Usuário não encontrado. Verifique o email.', 'danger')
+        # usuário, admin e ONG compartilham a mesma tela de login
+        for modelo, destino, boas_vindas in ((Usuario, 'profile', 'Login bem-sucedido!'),
+                                             (Admin, 'admin_dashboard', 'Login bem-sucedido! Bem-vindo, administrador.'),
+                                             (Ong, 'ong_dashboard', 'Login bem-sucedido! Bem-vinda, ONG.')):
+            conta = modelo.query.filter_by(email=form.email.data).first()
+            if conta and conta.check_password(form.senha.data):
+                login_user(conta)
+                flash(boas_vindas, 'success')
+                return redirect(url_for(destino))
+        # mensagem única: não revela se o e-mail existe
+        form.senha.errors.append('E-mail ou senha incorretos. Confira os dados e tente novamente.')
 
     return render_template('auth/login.html', form=form)
 
@@ -154,7 +124,10 @@ def home():
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     form = cadastroForm()
-    if form.validate_on_submit():
+    valido = form.validate_on_submit()
+    if valido and Usuario.query.filter_by(email=form.email.data).first():
+        form.email.errors.append('Este e-mail já está cadastrado. Faça login ou use outro e-mail.')
+    elif valido:
         print("Formulário validado")
         # hasheando a senha antes de salvar
         senha_hash = generate_password_hash(form.senha.data)
@@ -177,25 +150,21 @@ def cadastro():
             senha=senha_hash,  # Senha hasheada
             telefone=form.celular.data,
             rua=form.rua.data,
-            complemento=form.complemento.data,
+            complemento=form.complemento.data or '',
             cep=form.cep.data,
             numero=form.numero.data,
             ddd=form.ddd.data,
             celular=form.celular.data,
+            data_nascimento=form.data_nascimento.data,
             foto_perfil=foto_perfil_path,  # Caminho da imagem
             descricao_foto_perfil=form.descricao_foto_perfil.data
         )
-
-        user = Usuario.query.filter_by(email=form.email.data).first()
-        if user:
-            flash('Email já cadastrado. Tente outro.', 'danger')
-            return redirect(url_for('login'))
 
         # adiciona usuário no bd
         db.session.add(novo_usuario)
         db.session.commit()
 
-        flash('Cadastro realizado com sucesso!', 'success')
+        flash('Cadastro realizado com sucesso! Entre com seu e-mail e senha.', 'success')
         return redirect(url_for('login'))
     else:
         print("Formulário inválido:", form.errors)
@@ -207,52 +176,43 @@ def recuperar():
     form = sendLinkForm()
     if form.validate_on_submit():
         email = form.email.data
-
-        # encontrar o usuário pelo email
-        user = Usuario.query.filter_by(email=email).first()
-
-        if user:
-            # Criar o token
+        if Usuario.query.filter_by(email=email).first():
             token = s.dumps(email, salt='email-confirm')
             link = url_for('redefinir', token=token, _external=True)
-
-            # Enviar e-mail
-            msg = Message('Redefinição de Senha', sender='your-email@example.com', recipients=[email])
-            msg.body = f'Seu link para redefinir a senha é: {link}'
-            mail.send(msg)
-
-            flash('Um link para redefinir sua senha foi enviado para seu e-mail.', 'success')
-            return redirect(url_for('recuperar'))
-        else:
-            flash('Usuário não encontrado. Verifique o email.', 'danger')
+            msg = Message('Redefinição de Senha', sender=app.config['MAIL_USERNAME'], recipients=[email])
+            msg.body = f'Seu link para redefinir a senha é: {link}\nO link vale por 1 hora.'
+            try:
+                mail.send(msg)
+            except Exception as e:
+                print('Falha ao enviar e-mail:', e)
+                flash('Não foi possível enviar o e-mail agora. Tente novamente em alguns minutos.', 'danger')
+                return render_template('user_pages/recuperarSenha.html', form=form)
+        # mesma resposta para e-mail cadastrado ou não: não revela quem tem conta
+        flash(f'Se {email} estiver cadastrado, você receberá em instantes um link para redefinir a senha. '
+              'O link vale por 1 hora.', 'success')
+        return redirect(url_for('recuperar'))
 
     return render_template('user_pages/recuperarSenha.html', form=form)
 
 
 @app.route('/redefinir', methods=['GET', 'POST'])
 def redefinir():
+    token = request.args.get('token', '')
+    try:
+        email = s.loads(token, salt='email-confirm', max_age=3600)
+    except BadSignature:  # inclui link expirado
+        flash('Este link de redefinição é inválido ou expirou. Peça um novo link abaixo.', 'danger')
+        return redirect(url_for('recuperar'))
+
+    user = Usuario.query.filter_by(email=email).first_or_404()
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        email = form.email.data
-        nova_senha = form.senha.data
+        user.senha = generate_password_hash(form.senha.data)
+        db.session.commit()
+        flash('Sua senha foi redefinida com sucesso! Entre com a nova senha.', 'success')
+        return redirect(url_for('login'))
 
-
-        user = Usuario.query.filter_by(email=email).first()
-
-        if user:
-            # atualizar a senha e hashear antes de salvar)
-            user.senha = generate_password_hash(nova_senha)
-
-            db.session.commit()
-
-            flash('Sua senha foi redefinida com sucesso!', 'success')
-            return redirect(url_for('login'))  # Redirecionar para a página de login após redefinir a senha
-        else:
-            flash('Usuário não encontrado. Verifique o email.', 'danger')
-
-    return render_template('user_pages/redefinirSenha.html', form=form)
-
-
+    return render_template('user_pages/redefinirSenha.html', form=form, email=email, token=token)
 
 
 @app.route('/chats', methods=['GET', 'POST'])
@@ -358,24 +318,32 @@ def profile():
         return "Unauthorized access", 403
 
 
+# campo do formulário -> atributo do usuário
+CAMPOS_PERFIL = dict(primeiroNome='primeiro_nome', sobrenome='sobrenome', data_nascimento='data_nascimento',
+                     descricao_foto_perfil='descricao_foto_perfil', cep='cep', rua='rua', numero='numero',
+                     complemento='complemento', ddd='ddd', celular='celular', email='email')
+
+
 @app.route('/profile/edit', methods=[ 'POST','GET'])
 @login_required
 def edit_profile():
+    if not isinstance(current_user, Usuario):
+        return "Unauthorized access", 403
     form = editPerfilForm1()
 
+    # dados já conhecidos vêm preenchidos
+    if request.method == 'GET':
+        for campo, attr in CAMPOS_PERFIL.items():
+            form[campo].data = getattr(current_user, attr)
 
-    # Salvar alterações no banco se o formulário for válido
-    if form.validate_on_submit():
-        current_user.primeiro_nome = form.primeiroNome.data
-        current_user.sobrenome = form.sobrenome.data
-        current_user.email = form.email.data
-        current_user.rua = form.rua.data
-        current_user.complemento = form.complemento.data
-        current_user.cep = form.cep.data
-        current_user.descricao_foto_perfil = form.descricao_foto_perfil.data
-        current_user.numero = form.numero.data
-        current_user.ddd = form.ddd.data
-        current_user.celular = form.celular.data
+    valido = form.validate_on_submit()
+    if valido and Usuario.query.filter(Usuario.email == form.email.data, Usuario.id != current_user.id).first():
+        form.email.errors.append('Este e-mail já está em uso por outra conta.')
+    elif valido:
+        for campo, attr in CAMPOS_PERFIL.items():
+            setattr(current_user, attr, form[campo].data)
+        current_user.complemento = form.complemento.data or ''
+        current_user.telefone = form.celular.data
 
         # Atualizar a foto de perfil, se fornecida
         if form.foto_perfil.data:
@@ -392,19 +360,13 @@ def edit_profile():
         if form.senha.data:
             current_user.senha = generate_password_hash(form.senha.data)
 
-        # Persistir alterações no banco
-        db.session.add(current_user)
         db.session.commit()
-
-
+        flash('Perfil atualizado com sucesso!', 'success')
         return redirect(url_for('profile'))
+    else:
+        print("Formulário inválido:", form.errors)
 
-    # Para debug, exibir erros do formulário e checar os valores
-    print(form.errors)  # Verifica erros de validação
-    print(vars(current_user))  # Mostra os atributos do usuário no terminal
-
-    foto_perfil_atual = current_user.foto_perfil if current_user.foto_perfil else None
-    return render_template('user_pages/edit.html', form=form, foto_perfil_atual=foto_perfil_atual)
+    return render_template('user_pages/edit.html', form=form)
 
 
 @app.route('/petsList')
@@ -482,10 +444,10 @@ def ongs_register():
     if isinstance(current_user, Admin):
         form = cadastrar_OngForm()
 
-        # Processa o formulário antes de validar
-        form.process(formdata=request.form)
-
-        if form.validate_on_submit():
+        valido = form.validate_on_submit()
+        if valido and Ong.query.filter_by(email=form.email.data).first():
+            form.email.errors.append('Já existe uma ONG cadastrada com este e-mail.')
+        elif valido:
             print("Formulário validado")
 
             # Hasheando a senha antes de salvar
@@ -511,7 +473,7 @@ def ongs_register():
                 senha=senha_hash,  # Senha hasheada
                 telefone=form.celular.data,
                 rua=form.rua.data,
-                complemento=form.complemento.data,
+                complemento=form.complemento.data or '',
                 cep=form.cep.data,
                 numero=form.numero.data,
                 ddd=form.ddd.data,
@@ -522,18 +484,14 @@ def ongs_register():
                 instagram=form.instagram.data,
                 dados_bancarios=form.dados_bancarios.data,
                 descricao_foto_perfil_Logo=form.descricao_foto_perfil_Logo.data,
-                descricao_foto_qrCode=form.descricao_fotoqrCode.data
+                # valor padrão editável: só é usado se o admin deixar o campo vazio
+                descricao_foto_qrCode=form.descricao_fotoqrCode.data or f"Essa imagem é o QR code do PIX da ONG {form.nome_Ong.data}"
             )
-
-            # Verifica se a ONG já existe pelo email
-            ong_existente = Ong.query.filter_by(email=form.email.data).first()
-            if ong_existente:
-
-                return redirect(url_for('ongs_register'))
 
             db.session.add(nova_ong)
             db.session.commit()
 
+            flash(f'ONG "{nova_ong.nome_Ong}" cadastrada com sucesso!', 'success')
 
             return redirect(url_for('admin_dashboard'))
 
@@ -573,9 +531,6 @@ def pets_register():
     if isinstance(current_user, Ong):
         form = AnimalForm()
 
-        # preenche o campo ong com o nome da ONG associada
-        form.ong.data = current_user.nome_Ong
-
         if form.validate_on_submit():
             # diretório de upload
             upload_folder = current_app.config['UPLOAD_FOLDER']
@@ -601,6 +556,7 @@ def pets_register():
                 idade=form.idade.data,
                 descricao=form.descricao.data,
                 status=form.status.data,
+                castrado=form.castrado.data,
                 foto1=foto_paths[0],
                 foto2=foto_paths[1],
                 foto3=foto_paths[2],
@@ -615,6 +571,7 @@ def pets_register():
             db.session.add(novo_animal)
             db.session.commit()
 
+            flash(f'Animal "{novo_animal.nome}" cadastrado com sucesso!', 'success')
 
             return redirect(url_for('ong_dashboard'))
         else:
@@ -654,39 +611,26 @@ def delete_animal(id):
 def edit_animal(id):
     if isinstance(current_user, Ong):
         animal = Animal.query.get_or_404(id)  # Busca o animal pelo ID
+        if animal.ong_id != current_user.id:  # só a ONG dona edita o animal
+            return "Unauthorized access", 403
         form = editAnimalForm()
-
-        form.ong.data = current_user.nome_Ong
 
         # possiveis adotantes com os users que tem interesse registrado em tal pet
         interessados = Usuario.query.join(InteresseAnimal, Usuario.id == InteresseAnimal.usuario_id) \
             .filter(InteresseAnimal.animal_id == animal.id).all()
-
-        # Preenche 'adotante' no form com os usuários interessados
         form.adotante.choices = [(0, 'Nenhum')] + [(usuario.id, f'{usuario.primeiro_nome} {usuario.sobrenome}') for
                                                    usuario in interessados]
 
+        campos = ['nome', 'especie', 'tamanho', 'idade', 'descricao', 'status', 'castrado',
+                  'descricao_foto1', 'descricao_foto2', 'descricao_foto3', 'descricao_foto4']
         if request.method == 'GET':
-            form.nome.data = animal.nome
-            form.especie.data = animal.especie
-            form.tamanho.data = animal.tamanho
-            form.idade.data = animal.idade
-            form.descricao.data = animal.descricao
-            form.status.data = animal.status
+            for campo in campos:
+                form[campo].data = getattr(animal, campo)
             form.adotante.data = animal.adocao.usuario.id if animal.adocao else 0
-            form.descricao_foto1.data = animal.descricao_foto1
-            form.descricao_foto2.data = animal.descricao_foto2
-            form.descricao_foto3.data = animal.descricao_foto3
-            form.descricao_foto4.data = animal.descricao_foto4
 
         if form.validate_on_submit():
-            # atualiza os campos do animal
-            animal.nome = form.nome.data
-            animal.especie = form.especie.data
-            animal.tamanho = form.tamanho.data
-            animal.idade = form.idade.data
-            animal.descricao = form.descricao.data
-            animal.status = form.status.data
+            for campo in campos:
+                setattr(animal, campo, form[campo].data)
 
             # atualiza ou cria uma adoção
             adotante_id = form.adotante.data
@@ -699,12 +643,6 @@ def edit_animal(id):
             else:
                 if animal.adocao:
                     db.session.delete(animal.adocao)
-
-            # atualiza as descrições das fotos
-            animal.descricao_foto1 = form.descricao_foto1.data
-            animal.descricao_foto2 = form.descricao_foto2.data
-            animal.descricao_foto3 = form.descricao_foto3.data
-            animal.descricao_foto4 = form.descricao_foto4.data
 
             # atualiza as fotos se novas forem enviadas
             for i, foto_field in enumerate([form.foto1, form.foto2, form.foto3, form.foto4], start=1):
@@ -720,8 +658,7 @@ def edit_animal(id):
                     setattr(animal, f'foto{i}', path)
 
             db.session.commit()
-
-
+            flash(f'Animal "{animal.nome}" atualizado com sucesso!', 'success')
             return redirect(url_for('ong_dashboard'))  # Redireciona para o dashboard da ONG
 
         return render_template('ongs_pages/pets_edit.html', form=form, animal=animal)

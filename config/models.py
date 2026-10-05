@@ -28,6 +28,8 @@ class Usuario(db.Model, UserMixin):
     numero = db.Column(db.String(10), nullable=False)
     ddd = db.Column(db.String(2), nullable=False)
     celular = db.Column(db.String(9), nullable=False)
+    # nullable para não quebrar registros antigos (MySQL: ALTER TABLE usuario ADD COLUMN data_nascimento DATE NULL;)
+    data_nascimento = db.Column(db.Date, nullable=True)
     foto_perfil =db.Column(db.String(300), nullable=False)
     #descrição das fotos para acessibilidade
     descricao_foto_perfil = db.Column(db.String(300), nullable=False)
@@ -75,6 +77,8 @@ class Animal(db.Model):
     descricao = db.Column(db.String(300), nullable=False)
 
     status = db.Column(db.String(50), nullable=False)
+    # MySQL: ALTER TABLE animal ADD COLUMN castrado BOOLEAN NOT NULL DEFAULT 0;
+    castrado = db.Column(db.Boolean, nullable=False, default=False)
 
     #fotos
     foto1  = db.Column(db.String(200), nullable=False)

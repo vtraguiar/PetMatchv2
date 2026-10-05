@@ -1,2 +1,6 @@
 CreateDB.py
 
+.venv/
+instance/local.db
+instance/caps.db
+token_*.txt
