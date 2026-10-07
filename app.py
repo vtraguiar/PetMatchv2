@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, cur
 from sqlalchemy import text
 from werkzeug.utils import secure_filename
 import os
-from flask_sqlalchemy import SQLAlchemy
+from config.extensions import db
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
@@ -33,7 +33,7 @@ app.config['TESTING'] = os.environ.get('TESTING') == '1'
 app.config['WTF_I18N_ENABLED'] = False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate = Migrate(app, db)
 
 socketio = SocketIO(app)

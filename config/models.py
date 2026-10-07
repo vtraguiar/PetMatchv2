@@ -6,7 +6,9 @@ from flask_login import LoginManager, login_user, UserMixin, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import event
 
-from PetMatch import db
+
+from config.extensions import db
+
 
 
 #criação dos admins - executado só uma vez
