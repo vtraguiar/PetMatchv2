@@ -1,50 +1,41 @@
 {% extends "layouts/layout.html" %}
+{% from "macros/campo.html" import campo, cabecalho %}
 
 {% block titleEcss %}
-<title>Login</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <title>Entrar — PetMatch</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formularios.css') }}">
 {% endblock titleEcss %}
 
 {% block conteudo %}
-<div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-</div>
+<div class="page-content">
+    <div class="form-v10-content form-curto">
+        <form class="form-detail" action="{{ url_for('login') }}" method="post" novalidate>
+            {{ form.hidden_tag() }}
 
-<!-- Bloco de mensagens flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <div>
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
+            <div class="form-left">
+                <h1 class="titulo-form">Entrar</h1>
+                <p class="contexto-form">Acesso para adotantes, ONGs e administradores.</p>
+                {{ cabecalho(form) }}
+
+                <fieldset>
+                    <legend>Dados de acesso</legend>
+                    {{ campo(form.email) }}
+                    {{ campo(form.senha) }}
+                    <p class="link-auxiliar"><a href="{{ url_for('recuperar') }}">Esqueceu a senha?</a></p>
+                    <div class="form-row campo" id="recaptcha" tabindex="-1">
+                        <p class="rotulo-recaptcha">{{ form.recaptcha.label.text }} <span class="obrigatorio" aria-hidden="true">*</span></p>
+                        {{ form.recaptcha() }}
+                        {% if form.recaptcha.errors %}<div id="recaptcha-erro" class="error">{% for erro in form.recaptcha.errors %}<span>{{ erro }}</span>{% endfor %}</div>{% endif %}
+                    </div>
+                </fieldset>
+
+                <div class="acoes-form">
+                    <a class="botao-secundario" href="{{ url_for('cadastro') }}">Criar conta</a>
+                    {{ form.loginBotao(class="register botao-primario") }}
                 </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endwith %}
-<!-- Fim do bloco de mensagens flash -->
-
-<form method="POST" action="{{ url_for('login') }}">
-    {{ form.hidden_tag() }}  <!-- Token CSRF -->
-
-    <h3>Login</h3>
-
-    <label for="email">Email</label>
-    {{ form.email(class="form-control", id="email", placeholder="Email") }}
-
-    <label for="password">Senha</label>
-    {{ form.senha(class="form-control", id="password", placeholder="Senha") }}
-
-    <!-- Campo do reCAPTCHA -->
-    <div class="recaptcha-container">
-        {{ form.recaptcha() }}
+            </div>
+        </form>
     </div>
-
-    <button type="submit">{{ form.loginBotao() }}</button>  <!-- Botão de login -->
-
-    <a href="/recuperar" class="button">Esqueceu a senha?</a>
-</form>
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</div>
 {% endblock conteudo %}

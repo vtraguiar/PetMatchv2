@@ -1,2 +1,12 @@
 CreateDB.py
 
+
+instance/local.db
+instance/caps.db
+token_*.txt
+
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env

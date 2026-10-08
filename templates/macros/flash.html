@@ -1,0 +1,15 @@
+{# Mensagens de confirmação/erro do sistema (ISO 9241-17: feedback após o envio) #}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-mensagens" role="status" aria-live="polite"
+             style="max-width:900px;margin:16px auto;padding:0 16px;font-family:inherit">
+            {% for category, message in messages %}
+                <p style="margin:8px 0;padding:12px 16px;border-radius:6px;font-weight:600;
+                          {% if category == 'danger' %}background:#fdecea;color:#8a1c12;border:1px solid #f5c2bc
+                          {% else %}background:#e7f5ea;color:#1d5c2e;border:1px solid #b6dfc0{% endif %}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}

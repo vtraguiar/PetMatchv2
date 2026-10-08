@@ -11,8 +11,16 @@ A premissa do projeto é criar uma ponte entre ONGs para pets e possíveis donos
   - ![img.png](img.png)
   - Ir na Server -> Data Import -> selecionar o local do PetmatchExport -> Import Progress -> Start Import
   - ![img_1.png](img_1.png) ![img_2.png](img_2.png)
-- No arquivo app.py na linha 22 é necessário botar as credenciais do mysql
-  - Segue esse padrão : app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://<nome_do_user_mysql>:<senha_do_user>@localhost/PetMatch'
+- Defina a variável de ambiente `DATABASE_URL` com as credenciais do mysql (sem ela o sistema usa um SQLite local em `instance/local.db`)
+  - Segue esse padrão : `export DATABASE_URL='mysql+pymysql://<nome_do_user_mysql>:<senha_do_user>@localhost/PetMatch'`
+  - Bancos já importados precisam das colunas novas: `ALTER TABLE usuario ADD COLUMN data_nascimento DATE NULL;` e `ALTER TABLE animal ADD COLUMN castrado BOOLEAN NOT NULL DEFAULT 0;`
+- `TESTING=1` desliga o reCAPTCHA do login (somente para uso local)
+
+## Conformidade com a ISO 9241-17
+- Relatório (padrão ABNT): `relatorio/Relatorio_ISO9241-17_PetMatch.docx`, gerado por `python relatorio/gerar_relatorio.py` (usa LibreOffice e pdftotext para numerar sumário e listas; sem eles, atualize os campos no Word com F9)
+- Capturas: `python relatorio/capturar_telas.py antes|depois` (requer `pip install playwright` e o app rodando)
+- Teste dos 8 formulários: `python test_forms.py`
+- Validação no navegador e roteiro do leitor de tela Orca: `relatorio/verificacao/` (suba o app com `python relatorio/verificacao/servidor_teste.py 5000`)
 - Para executar o sistema em si tem que rodar o arquivo PetMatch.py, no terminal vai aparecer a url http://127.0.0.1:5000
   - Caso a porta 5000 esteja ocupada só comentar a linha 8 e descomentar a 7, que vai ser executado na porta 5001, na url http://127.0.0.1:5001
 

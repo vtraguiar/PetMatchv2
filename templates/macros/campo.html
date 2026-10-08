@@ -1,0 +1,72 @@
+{# Renderiza um campo de cadastro conforme a ISO 9241-17:
+   rótulo sempre visível, marca de obrigatório, ajuda de formato antes do erro e todos os erros ligados ao campo. #}
+{% macro campo(field, classe='input-text') %}
+    {% set ajuda_id = field.id ~ '-ajuda' %}
+    {% set erro_id = field.id ~ '-erro' %}
+    {% set descritores = [] %}
+    {% if field.description %}{% set _ = descritores.append(ajuda_id) %}{% endif %}
+    {% if field.errors %}{% set _ = descritores.append(erro_id) %}{% endif %}
+    {% set attrs = {'class': classe ~ (' campo-invalido' if field.errors else '')} %}
+    {% if descritores %}{% set _ = attrs.update({'aria-describedby': descritores|join(' ')}) %}{% endif %}
+    {% if field.errors %}{% set _ = attrs.update({'aria-invalid': 'true'}) %}{% endif %}
+
+    {# o Orca não anuncia "obrigatório" nesses tipos; o texto oculto garante o anúncio #}
+    {% set marca %}{% if field.flags.required %} <span class="obrigatorio" aria-hidden="true">*</span>{% if field.type in ['PasswordField', 'FileField', 'DateField', 'RadioField'] %}<span class="sr-only"> (obrigatório)</span>{% endif %}{% endif %}{% endset %}
+
+    <div class="form-row campo{% if field.type == 'BooleanField' %} campo-checkbox{% endif %}">
+        {% if field.type == 'RadioField' %}
+            {# nome do grupo, ajuda e erro ligados a cada botão: leitores de tela não leem o fieldset ao focar uma opção #}
+            {% set _ = attrs.pop('class') %}
+            <fieldset class="grupo-radio" id="{{ field.id }}" tabindex="-1">
+                <legend id="{{ field.id }}-legenda">{{ field.label.text }}{{ marca }}</legend>
+                {% for opcao in field %}
+                    {# o Orca não lê a descrição de botões de rádio: o erro entra no nome acessível #}
+                    {% set _ = attrs.update({'aria-labelledby': field.id ~ '-legenda ' ~ opcao.id ~ '-texto' ~ (' ' ~ erro_id if field.errors else '')}) %}
+                    <label class="opcao-radio">{{ opcao(required=field.flags.required, **attrs) }} <span id="{{ opcao.id }}-texto">{{ opcao.label.text }}</span></label>
+                {% endfor %}
+            </fieldset>
+        {% elif field.type == 'BooleanField' %}
+            <label>{{ field(**attrs) }} {{ field.label.text }}{{ marca }}</label>
+        {% else %}
+            {# idem para campos de arquivo #}
+            {% if field.type == 'FileField' and field.errors %}{% set _ = attrs.update({'aria-labelledby': field.id ~ '-rotulo ' ~ erro_id}) %}{% endif %}
+            <label for="{{ field.id }}" id="{{ field.id }}-rotulo">{{ field.label.text }}{{ marca }}</label>
+            {{ field(**attrs) }}
+        {% endif %}
+        {% if field.description %}<small id="{{ ajuda_id }}" class="ajuda">{{ field.description }}</small>{% endif %}
+        {% if field.errors %}
+            <div id="{{ erro_id }}" class="error">
+                {% for erro in field.errors %}<span>{{ erro }}</span>{% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{# Cabeçalho comum: legenda dos obrigatórios e resumo de erros com links para os campos #}
+{% macro cabecalho(form, edicao=false) %}
+    <p class="legenda-obrigatorio">Campos marcados com <span class="obrigatorio">*</span> são obrigatórios.</p>
+    {% if form.errors %}
+        {% set com_erro = form.errors.keys()|reject('equalto', 'csrf_token')|select('in', form._fields)|list %}
+        <div class="resumo-erros" role="alert" tabindex="-1" id="resumo-erros">
+            {% if 'csrf_token' in form.errors %}
+                <p><strong>Sua sessão expirou.</strong> Revise os dados e envie o formulário novamente.</p>
+            {% endif %}
+            {% if com_erro %}
+                <strong>Corrija {{ com_erro|length }} campo(s) para continuar:</strong>
+                <ul>
+                    {% for nome in com_erro %}
+                        <li><a href="#{{ form[nome].id }}">{{ form[nome].label.text }}: {{ form.errors[nome][0] }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% set tem_foto = form|selectattr('type', 'equalto', 'FileField')|list %}
+            {% set tem_senha = form|selectattr('type', 'equalto', 'PasswordField')|list %}
+            {% if tem_foto or tem_senha %}
+                <p class="aviso-reenvio">Por segurança, {{ 'as fotos e a senha não são mantidas' if tem_foto and tem_senha else ('as fotos não são mantidas' if tem_foto else 'a senha não é mantida') }}:
+                    {{ 'se ia trocá-las, ' if edicao }}{{ 'selecione as fotos e digite a senha novamente' if tem_foto and tem_senha else ('selecione as fotos novamente' if tem_foto else 'digite a senha novamente') }}.</p>
+            {% endif %}
+        </div>
+        {# leva o foco ao resumo: leitores de tela leem os erros e o teclado parte dali para os links #}
+        <script>document.getElementById('resumo-erros').focus();</script>
+    {% endif %}
+{% endmacro %}

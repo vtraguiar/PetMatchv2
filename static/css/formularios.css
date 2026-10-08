@@ -1,0 +1,355 @@
+/* Estilos comuns aos 3 cadastros (ISO 9241-17).
+   Carregado depois do CSS específico de cada página. */
+
+.form-v10-content .form-detail .form-left {
+    padding: 32px 48px;
+}
+
+.titulo-form {
+    font-size: 26px;
+    margin: 0 0 8px;
+    color: #222;
+}
+
+.contexto-form,
+.legenda-obrigatorio {
+    margin: 4px 0 16px;
+    color: #444;
+    font-size: 15px;
+}
+
+.obrigatorio {
+    color: #b3261e;
+    font-weight: 700;
+}
+
+.form-detail fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 20px 4px;
+    margin: 0 0 24px;
+}
+
+.form-detail fieldset > legend {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 0 8px;
+    color: #222;
+}
+
+.form-detail .form-group {
+    display: flex;
+    gap: 20px;
+}
+
+.form-detail .form-group > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-v10-content .form-detail .campo {
+    margin: 0 0 16px;
+    padding: 0;
+    width: auto;
+}
+
+.form-detail .campo > label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: #222;
+    text-align: left;
+}
+
+.form-detail .campo .input-text,
+.form-detail .campo .input-select,
+.form-detail .campo .input-text-description,
+.form-detail .campo .input-file {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.ajuda {
+    display: block;
+    margin-top: 4px;
+    color: #555;
+    font-size: 13px;
+}
+
+.error {
+    margin-top: 4px;
+    color: #b3261e;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.error span {
+    display: block;
+}
+
+.error span::before {
+    content: "⚠ ";
+}
+
+.campo-invalido {
+    border: 2px solid #b3261e !important;
+    background: #fff8f7 !important;
+}
+
+.resumo-erros {
+    border: 2px solid #b3261e;
+    background: #fdecea;
+    color: #5f1410;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0 0 20px;
+}
+
+.resumo-erros ul {
+    margin: 8px 0 0 18px;
+    padding: 0;
+}
+
+.resumo-erros a {
+    color: #5f1410;
+}
+
+.grupo-radio {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.grupo-radio > legend {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 0 !important;
+    margin-bottom: 6px;
+}
+
+.opcao-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 24px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.campo-checkbox > label {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-v10-content .form-detail .opcao-radio input,
+.form-v10-content .form-detail .campo-checkbox input {
+    appearance: auto;
+    -webkit-appearance: auto;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 2px 0 0;
+    border: 0;
+    flex: none;
+    accent-color: #2e7d32;
+}
+
+.form-v10-content .form-detail .campo .input-select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: auto;
+    -webkit-appearance: auto;
+}
+
+.par-foto {
+    border-top: 1px dashed #ddd;
+    padding-top: 12px;
+}
+
+.par-foto:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.acoes-form {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.form-v10-content .form-detail .acoes-form .botao-primario {
+    background: #2e7d32 !important;
+    color: #fff !important;
+    border: 0;
+    border-radius: 24px;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: auto;
+}
+
+.acoes-form .botao-primario:hover {
+    background: #1b5e20 !important;
+}
+
+.acoes-form .botao-secundario {
+    color: #333;
+    border: 1px solid #999;
+    border-radius: 24px;
+    padding: 11px 28px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-detail input:focus-visible,
+.form-detail select:focus-visible,
+.form-detail textarea:focus-visible,
+.acoes-form a:focus-visible,
+.acoes-form input:focus-visible,
+.resumo-erros a:focus-visible {
+    outline: 3px solid #1565c0 !important;
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .form-v10-content .form-detail .form-left {
+        padding: 20px 16px;
+    }
+
+    .form-detail .form-group {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* O rodapé fixo (ongs_register.css) cobria campos durante a rolagem */
+footer {
+    position: static !important;
+}
+
+.resumo-erros p {
+    margin: 0 0 6px;
+}
+
+.resumo-erros .aviso-reenvio {
+    margin: 10px 0 0;
+    font-style: italic;
+}
+
+/* Texto somente para leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Telas de edição e formulários curtos
+   (login, recuperar e redefinir senha) */
+.foto-atual {
+    margin: 0 0 12px;
+}
+
+.foto-atual p {
+    margin: 0 0 6px;
+    font-weight: 600;
+    color: #222;
+}
+
+.foto-atual img {
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.form-v10-content.form-curto {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.link-auxiliar {
+    margin: 0 0 16px;
+}
+
+.rotulo-recaptcha {
+    margin: 0 0 6px;
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* =========================================
+   ISO 9241-17 - 5.1.4
+   Instruções gerais do formulário
+   ========================================= */
+
+.instrucoes-formulario {
+    margin: 4px 0 20px;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   Foto de perfil / descrição condicional
+   ========================================= */
+
+.descricao-foto-ajuda {
+    margin-top: -8px;
+    margin-bottom: 16px;
+    color: #555;
+    font-size: 13px;
+}
+
+.campo-condicional-inativo {
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   ISO 9241-17 - 7.3
+   Feedback de erro ao sair do campo
+   ========================================= */
+
+.erro-validacao-cliente {
+    margin-top: 4px;
+    color: #b3261e;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.erro-validacao-cliente::before {
+    content: "⚠ ";
+}
+
+
+/* =========================================
+   ISO 9241-17 - 5.1.3
+   Controle de densidade visual
+   ========================================= */
+
+.form-detail fieldset {
+    margin-bottom: 28px;
+}
+
+.form-detail fieldset > legend {
+    margin-bottom: 4px;
+}
+
+.form-v10-content .form-detail .campo {
+    margin-bottom: 18px;
+}

@@ -1,177 +1,681 @@
 {% extends "layouts/layout.html" %}
+{% from "macros/campo.html" import campo, cabecalho %}
 
 {% block titleEcss %}
-    <title>Cadastro de ONG</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ongs_register.css') }}">
+    <title>Cadastro de ONG — PetMatch</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/ongs_register.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/formularios.css') }}"
+    >
 {% endblock titleEcss %}
 
+
 {% block conteudo %}
-    <div class="page-content">
-        <div class="form-v10-content">
-            <form class="form-detail" action="{{ url_for('ongs_register') }}" method="post"
-                enctype="multipart/form-data">
-                <!-- Campo de segurança CSRF -->
-                {{ form.hidden_tag() }}
 
-                <div class="form-left">
-                    <h2>Informações Gerais</h2>
-                    <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.nome_Ong.label }}
-                            {{ form.nome_Ong(class="input-text") }}
-                            {% if form.nome_Ong.errors %}
-                                <div class="error">{{ form.nome_Ong.errors[0] }}</div>
-                            {% endif %}
-                        </div>
+<div class="page-content">
 
-                        <div class="form-row form-row-2">
-                            {{ form.cnpj.label }}
-                            {{ form.cnpj(class="input-text") }}
-                            {% if form.cnpj.errors %}
-                                <div class="error">{{ form.cnpj.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
+    <div class="form-v10-content">
 
-                    <h2>Foto de perfil/logo</h2>
-                    <div class="form-group">
-                        <div class="form-row form-row-3">
-                            {{ form.fotoPerfilLogo(class="input-file") }}
-                            {% if form.fotoPerfilLogo.errors %}
-                                <div class="error">{{ form.fotoPerfilLogo.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="form-row">
-                            {{ form.descricao_foto_perfil_Logo.label }}<br>
-                            {{ form.descricao_foto_perfil_Logo(class="input-text-description") }}
-                            {% if form.descricao_foto_perfil_Logo.errors %}
-                                <div class="error">{{ form.descricao_foto_perfil_Logo.errors[0] }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
+        <form
+            class="form-detail"
+            action="{{ url_for('ongs_register') }}"
+            method="post"
+            enctype="multipart/form-data"
+            novalidate
+            id="form-cadastro-ong"
+        >
 
-                        <h2>Foto do QRcode</h2>
-                        <div class="form-group">
-                            <div class="form-row form-row-3">
-                                {{ form.fotoQrCode(class="input-file") }}
-                                {% if form.fotoQrCode.errors %}
-                                    <div class="error">{{ form.fotoQrCode.errors[0] }}</div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                {{ form.descricao_fotoqrCode.label }}<br>
-                                {{ form.descricao_fotoqrCode(class="input-text-description") }}
-                                {% if form.descricao_fotoqrCode.errors %}
-                                    <div class="error">{{ form.descricao_fotoqrCode.errors[0] }}</div>
-                                {% endif %}
-                            </div>
-                        </div>
+            {{ form.hidden_tag() }}
 
-                    <h2>Informações de Contato</h2>
-                    <div class="form-row">
-                        {{ form.rua.label }}
-                        {{ form.rua(class="input-text") }}
-                        {% if form.rua.errors %}
-                            <div class="error">{{ form.rua.errors[0] }}</div>
-                        {% endif %}
-                    </div>
+            <div class="form-left">
 
-                    <div class="form-row">
-                        {{ form.complemento.label }}
-                        {{ form.complemento(class="input-text") }}
-                        {% if form.complemento.errors %}
-                            <div class="error">{{ form.complemento.errors[0] }}</div>
-                        {% endif %}
-                    </div>
+                <h1 class="titulo-form">
+                    Cadastro de ONG
+                </h1>
+
+                {{ cabecalho(form) }}
+
+                <!--
+                    ISO 9241-17 - 5.1.4
+                    Instruções gerais
+                -->
+                <p class="instrucoes-formulario">
+                    Preencha as informações solicitadas abaixo.
+                    Ao finalizar, selecione
+                    <strong>Cadastrar ONG</strong>.
+                    Para sair sem concluir o cadastro,
+                    selecione <strong>Cancelar</strong>.
+                </p>
+
+
+                <!-- =========================================
+                     DADOS DA ONG
+                     ========================================= -->
+
+                <fieldset>
+
+                    <legend>Dados da ONG</legend>
 
                     <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.cep.label }}
-                            {{ form.cep(class="input-text") }}
-                            {% if form.cep.errors %}
-                                <div class="error">{{ form.cep.errors[0] }}</div>
-                            {% endif %}
+
+                        <div class="form-row-1">
+                            {{ campo(form.nome_Ong) }}
                         </div>
 
-                        <div class="form-row form-row-2">
-                            {{ form.numero.label }}
-                            {{ form.numero(class="input-text") }}
-                            {% if form.numero.errors %}
-                                <div class="error">{{ form.numero.errors[0] }}</div>
-                            {% endif %}
+                        <div class="form-row-2">
+                            {{ campo(form.cnpj) }}
                         </div>
+
                     </div>
+
+
+                    <!-- Logo opcional -->
+                    <div id="grupo-logo-ong">
+
+                        {{ campo(
+                            form.fotoPerfilLogo,
+                            'input-file'
+                        ) }}
+
+                    </div>
+
+
+                    <!--
+                        Descrição obrigatória somente
+                        quando houver uma logo.
+                    -->
+                    <div id="grupo-descricao-logo">
+
+                        {{ campo(
+                            form.descricao_foto_perfil_Logo,
+                            'input-text-description'
+                        ) }}
+
+                        <p class="texto-ajuda descricao-foto-ajuda">
+                            Preencha a descrição caso envie uma logo da ONG.
+                        </p>
+
+                    </div>
+
+                </fieldset>
+
+
+
+                <!-- =========================================
+                     ENDEREÇO
+                     ========================================= -->
+
+                <fieldset>
+
+                    <legend>Endereço</legend>
 
                     <div class="form-group">
-                        <div class="form-row form-row-1">
-                            {{ form.ddd.label }}
-                            {{ form.ddd(class="input-text") }}
-                            {% if form.ddd.errors %}
-                                <div class="error">{{ form.ddd.errors[0] }}</div>
-                            {% endif %}
+
+                        <div class="form-row-1">
+                            {{ campo(form.cep) }}
                         </div>
 
-                        <div class="form-row form-row-2">
-                            {{ form.celular.label }}
-                            {{ form.celular(class="input-text") }}
-                            {% if form.celular.errors %}
-                                <div class="error">{{ form.celular.errors[0] }}</div>
-                            {% endif %}
+                        <div class="form-row-2">
+                            {{ campo(form.numero) }}
                         </div>
+
                     </div>
 
-                    <h2>Informações Bancárias</h2>
-                    <div class="form-row">
-                        {{ form.dados_bancarios.label }}
-                        {{ form.dados_bancarios(class="input-text") }}
-                        {% if form.dados_bancarios.errors %}
-                            <div class="error">{{ form.dados_bancarios.errors[0] }}</div>
-                        {% endif %}
+                    {{ campo(form.rua) }}
+
+                    {{ campo(form.complemento) }}
+
+                </fieldset>
+
+
+
+                <!-- =========================================
+                     CONTATO
+                     ========================================= -->
+
+                <fieldset>
+
+                    <legend>Contato</legend>
+
+                    <div class="form-group">
+
+                        <div class="form-row-1">
+                            {{ campo(form.ddd) }}
+                        </div>
+
+                        <div class="form-row-2">
+                            {{ campo(form.celular) }}
+                        </div>
+
                     </div>
 
-                    <div class="form-row">
-                        {{ form.instagram.label }}
-                        {{ form.instagram(class="input-text") }}
-                        {% if form.instagram.errors %}
-                            <div class="error">{{ form.instagram.errors[0] }}</div>
-                        {% endif %}
-                    </div>
+                    {{ campo(form.instagram) }}
 
-                    <h2>Segurança</h2>
-                    <div class="form-row">
-                        {{ form.email.label }}
-                        {{ form.email(class="input-text") }}
-                        {% if form.email.errors %}
-                            <div class="error">{{ form.email.errors[0] }}</div>
-                        {% endif %}
-                    </div>
+                </fieldset>
 
-                    <div class="form-row">
-                        {{ form.senha.label }}
-                        {{ form.senha(class="input-text") }}
-                        {% if form.senha.errors %}
-                            <div class="error">{{ form.senha.errors[0] }}</div>
-                        {% endif %}
-                    </div>
 
-                    <div class="form-row">
-                        {{ form.senhaConfirmar.label }}
-                        {{ form.senhaConfirmar(class="input-text") }}
-                        {% if form.senhaConfirmar.errors %}
-                            <div class="error">{{ form.senhaConfirmar.errors[0] }}</div>
-                        {% endif %}
-                    </div>
 
-                    <div class="form-row-last">
-                        {{ form.cadastrarBotao(class="register") }}
-                    </div>
+                <!-- =========================================
+                     DOAÇÕES
+                     ========================================= -->
+
+                <fieldset>
+
+                    <legend>Doações</legend>
+
+                    {{ campo(
+                        form.dados_bancarios,
+                        'input-text-description'
+                    ) }}
+
+                    {{ campo(
+                        form.fotoQrCode,
+                        'input-file'
+                    ) }}
+
+                    {{ campo(
+                        form.descricao_fotoqrCode,
+                        'input-text-description'
+                    ) }}
+
+                </fieldset>
+
+
+
+                <!-- =========================================
+                     DADOS DE ACESSO
+                     ========================================= -->
+
+                <fieldset>
+
+                    <legend>Dados de acesso da ONG</legend>
+
+                    {{ campo(form.email) }}
+
+                    {{ campo(form.senha) }}
+
+                    {{ campo(form.senhaConfirmar) }}
+
+                </fieldset>
+
+
+
+                <!-- =========================================
+                     AÇÕES
+                     ========================================= -->
+
+                <div class="acoes-form">
+
+                    <a
+                        class="botao-secundario"
+                        href="{{ url_for('admin_dashboard') }}"
+                    >
+                        Cancelar
+                    </a>
+
+                    {{ form.cadastrarBotao(
+                        class="register botao-primario"
+                    ) }}
+
                 </div>
-            </form>
-        </div>
+
+            </div>
+
+        </form>
+
     </div>
+
+</div>
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+     * ======================================================
+     * ISO 9241-17 - 8.1
+     * Foco inicial no primeiro campo
+     * ======================================================
+     */
+
+    const primeiroCampo = document.getElementById(
+        "{{ form.nome_Ong.id }}"
+    );
+
+    if (primeiroCampo) {
+        primeiroCampo.focus();
+    }
+
+
+
+    /*
+     * ======================================================
+     * LOGO + DESCRIÇÃO CONDICIONAL
+     * ======================================================
+     */
+
+    const campoLogo = document.getElementById(
+        "{{ form.fotoPerfilLogo.id }}"
+    );
+
+    const campoDescricaoLogo = document.getElementById(
+        "{{ form.descricao_foto_perfil_Logo.id }}"
+    );
+
+    const grupoDescricaoLogo = document.getElementById(
+        "grupo-descricao-logo"
+    );
+
+
+    function atualizarDescricaoLogo() {
+
+        if (!campoLogo || !campoDescricaoLogo) {
+            return;
+        }
+
+        const possuiLogo =
+            campoLogo.files &&
+            campoLogo.files.length > 0;
+
+
+        if (!possuiLogo) {
+
+            campoDescricaoLogo.disabled = true;
+
+            campoDescricaoLogo.value = "";
+
+            if (grupoDescricaoLogo) {
+
+                grupoDescricaoLogo.classList.add(
+                    "campo-condicional-inativo"
+                );
+
+            }
+
+        } else {
+
+            campoDescricaoLogo.disabled = false;
+
+            if (grupoDescricaoLogo) {
+
+                grupoDescricaoLogo.classList.remove(
+                    "campo-condicional-inativo"
+                );
+
+            }
+
+        }
+
+    }
+
+
+    if (campoLogo) {
+
+        campoLogo.addEventListener(
+            "change",
+            atualizarDescricaoLogo
+        );
+
+        atualizarDescricaoLogo();
+
+    }
+
+
+
+    /*
+     * ======================================================
+     * ISO 9241-17 - 7.3
+     * FEEDBACK DE ERRO AO SAIR DO CAMPO
+     * ======================================================
+     */
+
+    const regras = {
+
+        "{{ form.nome_Ong.id }}": function (campo) {
+
+            if (!campo.value.trim()) {
+                return "Informe o nome da ONG.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.cnpj.id }}": function (campo) {
+
+            const valor = campo.value.replace(/\D/g, "");
+
+            if (!valor) {
+                return "Informe o CNPJ.";
+            }
+
+            if (valor.length !== 14) {
+                return "O CNPJ deve possuir 14 dígitos.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.cep.id }}": function (campo) {
+
+            const valor = campo.value.replace(/\D/g, "");
+
+            if (!valor) {
+                return "Informe o CEP.";
+            }
+
+            if (valor.length !== 8) {
+                return "O CEP deve possuir 8 dígitos.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.numero.id }}": function (campo) {
+
+            if (!campo.value.trim()) {
+                return "Informe o número.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.rua.id }}": function (campo) {
+
+            if (!campo.value.trim()) {
+                return "Informe a rua.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.ddd.id }}": function (campo) {
+
+            const valor = campo.value.replace(/\D/g, "");
+
+            if (!valor) {
+                return "Informe o DDD.";
+            }
+
+            if (valor.length !== 2) {
+                return "O DDD deve possuir 2 dígitos.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.celular.id }}": function (campo) {
+
+            const valor = campo.value.replace(/\D/g, "");
+
+            if (!valor) {
+                return "Informe o celular.";
+            }
+
+            if (valor.length !== 9) {
+                return "O celular deve possuir 9 dígitos.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.instagram.id }}": function (campo) {
+
+            if (!campo.value.trim()) {
+                return "Informe o Instagram da ONG.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.dados_bancarios.id }}": function (campo) {
+
+            if (!campo.value.trim()) {
+                return "Informe os dados bancários.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.email.id }}": function (campo) {
+
+            const valor = campo.value.trim();
+
+            if (!valor) {
+                return "Informe o e-mail.";
+            }
+
+            const formatoEmail =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!formatoEmail.test(valor)) {
+                return "Informe um e-mail válido.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.senha.id }}": function (campo) {
+
+            if (!campo.value) {
+                return "Informe uma senha.";
+            }
+
+            if (campo.value.length < 6) {
+                return "A senha deve possuir pelo menos 6 caracteres.";
+            }
+
+            return "";
+        },
+
+
+        "{{ form.senhaConfirmar.id }}": function (campo) {
+
+            const campoSenha = document.getElementById(
+                "{{ form.senha.id }}"
+            );
+
+            if (!campo.value) {
+                return "Confirme a senha.";
+            }
+
+            if (
+                campoSenha &&
+                campo.value !== campoSenha.value
+            ) {
+                return "As senhas informadas não coincidem.";
+            }
+
+            return "";
+        }
+
+    };
+
+
+
+    /*
+     * Exibe ou remove mensagens de erro
+     */
+    function mostrarErro(campo, mensagem) {
+
+        const idErro =
+            campo.id + "-erro-cliente";
+
+        let elementoErro =
+            document.getElementById(idErro);
+
+
+        if (!mensagem) {
+
+            campo.classList.remove(
+                "campo-invalido"
+            );
+
+            campo.removeAttribute(
+                "aria-invalid"
+            );
+
+            if (elementoErro) {
+                elementoErro.remove();
+            }
+
+            return;
+
+        }
+
+
+        campo.classList.add(
+            "campo-invalido"
+        );
+
+        campo.setAttribute(
+            "aria-invalid",
+            "true"
+        );
+
+
+        if (!elementoErro) {
+
+            elementoErro =
+                document.createElement("div");
+
+            elementoErro.id = idErro;
+
+            elementoErro.className =
+                "error erro-validacao-cliente";
+
+            elementoErro.setAttribute(
+                "role",
+                "alert"
+            );
+
+            campo.insertAdjacentElement(
+                "afterend",
+                elementoErro
+            );
+
+        }
+
+        elementoErro.textContent =
+            mensagem;
+
+    }
+
+
+
+    /*
+     * Validação ao sair do campo
+     */
+    Object.entries(regras).forEach(
+        function ([idCampo, validar]) {
+
+            const campo =
+                document.getElementById(
+                    idCampo
+                );
+
+            if (!campo) {
+                return;
+            }
+
+
+            campo.addEventListener(
+                "blur",
+                function () {
+
+                    const mensagem =
+                        validar(campo);
+
+                    mostrarErro(
+                        campo,
+                        mensagem
+                    );
+
+                }
+            );
+
+
+            campo.addEventListener(
+                "input",
+                function () {
+
+                    const mensagem =
+                        validar(campo);
+
+                    if (!mensagem) {
+
+                        mostrarErro(
+                            campo,
+                            ""
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /*
+     * ======================================================
+     * DESCRIÇÃO DA LOGO
+     * ======================================================
+     */
+
+    if (campoDescricaoLogo) {
+
+        campoDescricaoLogo.addEventListener(
+            "blur",
+            function () {
+
+                if (
+                    campoLogo &&
+                    campoLogo.files &&
+                    campoLogo.files.length > 0 &&
+                    !campoDescricaoLogo.value.trim()
+                ) {
+
+                    mostrarErro(
+                        campoDescricaoLogo,
+                        "Informe uma descrição para a logo enviada."
+                    );
+
+                } else {
+
+                    mostrarErro(
+                        campoDescricaoLogo,
+                        ""
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
 {% endblock conteudo %}

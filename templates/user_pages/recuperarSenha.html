@@ -1,26 +1,34 @@
 {% extends "layouts/layout.html" %}
-{% block titleEcss %}
-<title>Recuperação de Senha</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/recuperaçãoSenha.css') }}">
+{% from "macros/campo.html" import campo, cabecalho %}
 
-{% endblock titleEcss%}
+{% block titleEcss %}
+    <title>Recuperar senha — PetMatch</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formularios.css') }}">
+{% endblock titleEcss %}
 
 {% block conteudo %}
-
-<div class="container">
-    <div class="form-box">
-        <h2>Recuperar Senha</h2>
-        <p>Insira seu endereço de e-mail e enviaremos um link para redefinir sua senha.</p>
-        <form action="{{ url_for('recuperar') }}" method="POST">
+<div class="page-content">
+    <div class="form-v10-content form-curto">
+        <form class="form-detail" action="{{ url_for('recuperar') }}" method="post" novalidate>
             {{ form.hidden_tag() }}
 
-            {{ form.email.label }}
-                    {{ form.email(class="input-text") }}
-                    {% if form.email.errors %}
-                        <div class="error">{{ form.email.errors[0] }}</div>
-                    {% endif %}
-            <button type="submit" class="btn-edit">Enviar email</button>
+            <div class="form-left">
+                <h1 class="titulo-form">Recuperar senha</h1>
+                <p class="contexto-form">Informe seu e-mail e enviaremos um link para criar uma nova senha.</p>
+                {{ cabecalho(form) }}
+
+                <fieldset>
+                    <legend>Conta</legend>
+                    {{ campo(form.email) }}
+                </fieldset>
+
+                <div class="acoes-form">
+                    <a class="botao-secundario" href="{{ url_for('login') }}">Voltar ao login</a>
+                    {{ form.sendBotao(class="register botao-primario") }}
+                </div>
+            </div>
         </form>
     </div>
 </div>
-{% endblock conteudo%}
+{% endblock conteudo %}
